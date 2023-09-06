@@ -5,32 +5,55 @@ import org.testng.annotations.Test;
 
 public class FirstTests {
     private int a;
+    private int b;
 
     @BeforeClass(alwaysRun = true)
     void beforeClass() {
+        a = 20;
+        b = 4;
         System.out.println("Проверим, работает ли оно?");
     }
 
     @AfterClass(alwaysRun = true)
     void afterClass() {
         System.out.println("Работает!!!");
+        System.out.println();
     }
 
-    @Test(description = "Первый тест")
-    void firstTest() {
-
-        System.out.println("Пароль от квартиры, где деньги лежат...");
-        System.out.println("Не скажу конечно)");
-
-    }
-
-    @Test(description = "Второй тест")
-    void secondTest() {
-        System.out.println("Посчитаем сумму чисел - 1234 и 4321");
-        int a = 1234;
-        int b = 4321;
+    @Test(priority = 1, description = "Первый тест - Сложение")
+    void firstTestSum() {
+        System.out.println("Посчитаем сумму чисел 20 и 4");
         int sum = a + b;
-        System.out.println("Сумма чисел:" + sum);
-       Assert.assertEquals(5555, sum, "Что-то пошло не так! Сумма считается не верно!");
+        System.out.println("Сумма чисел: " + sum);
+        System.out.println();
+        Assert.assertEquals(24, sum, "Что-то пошло не так! Сумма считается не верно!");
+
+    }
+
+    @Test(priority = 2, description = "Второй тест - Вычитание")
+    void secondTestSubtract() {
+        System.out.println("Посчитаем разницу чисел 20 и 4");
+        int sub = a - b;
+        System.out.println("Разница чисел: " + sub);
+        System.out.println();
+       Assert.assertEquals(16, sub, "Что-то пошло не так! Разница считается не верно!");
+    }
+
+    @Test(priority = 3, description = "Третий тест - Умножение")
+    void thirdTestMultiply() {
+        System.out.println("Умножим числа 20 и 4");
+        int mul = a * b;
+        System.out.println("Произведение чисел: " + mul);
+        System.out.println();
+        Assert.assertEquals(80, mul, "Что-то пошло не так! Произведение считается не верно!");
+    }
+
+    @Test(priority = 4, description = "Четвертый тест - Деление")
+    void fourthTestDivision() {
+        System.out.println("Разделим числа 20 и 4");
+        int div = a / b;
+        System.out.println("Частное от деления чисел: " + div);
+        System.out.println();
+        Assert.assertEquals(5, div, "Что-то пошло не так! Частное считается не верно!");
     }
 }
