@@ -41,13 +41,13 @@ public class ReqresSteps {
         return response.getBody().asString();
     }
 
-    public String putClient(String client) {
+    public String putClient(String client, String ID) {
         Response response = given()
                 .spec(reqresSpecification)
                 .body(client)
                 .when()
                 .log().all()
-                .put("/api/users/2")
+                .put("/api/users/" + ID)
                 .then()
                 .log().all()
                 .extract()
