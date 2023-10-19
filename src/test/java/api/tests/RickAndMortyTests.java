@@ -1,19 +1,31 @@
-package tests;
+package api.tests;
 
+import io.qameta.allure.*;
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import steps.RickAndMortySteps;
+import api.steps.RickAndMortySteps;
 
+@Epic("Api тесты")
+@Feature("RickAndMorty тесты")
+@Story("GET info")
 public class RickAndMortyTests {
     private RickAndMortySteps rickAndMortySteps;
 
+    @BeforeClass(description = "Добавляем фильтр Allure для RestAssured", alwaysRun = true)
+    void addFilters() {
+        RestAssured.filters(new AllureRestAssured());
+    }
     @BeforeClass(alwaysRun = true)
     void beforeClass() {
         rickAndMortySteps = new RickAndMortySteps();
     }
 
+    @Issue("SPC-2122")
+    @TmsLink("231494")
     @Test(description = "Сравнение значений")
     void successGetMortyEpisodesTest() {
         Response response = rickAndMortySteps.getAllInformation(2);

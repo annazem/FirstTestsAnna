@@ -1,3 +1,6 @@
+package api.tests;
+
+import io.qameta.allure.Allure;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -14,6 +17,7 @@ public class FirstTests {
     void beforeClass() {
         a = 20;
         b = 4;
+        Allure.step("text");
         System.out.println("Проверим, работает ли оно?");
         System.out.println();
     }

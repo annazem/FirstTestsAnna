@@ -1,19 +1,32 @@
-package tests;
+package api.tests;
 
+import io.qameta.allure.*;
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
+import api.steps.ReqresSteps;
 import org.json.JSONObject;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import steps.ReqresSteps;
 
+@Epic("Api тесты")
+@Feature("Reqres тесты")
+@Story("POST and PUT client")
 public class ReqresTests {
     private ReqresSteps reqresSteps;
+
+    @BeforeClass(description = "Добавляем фильтр Allure для RestAssured", alwaysRun = true)
+    void addFilters() {
+        RestAssured.filters(new AllureRestAssured());
+    }
 
     @BeforeClass(alwaysRun = true)
     void beforeClass() {
         reqresSteps = new ReqresSteps();
     }
 
+    @Issue("SPC-2122")
+    @TmsLink("231493")
     @Test(description = "Создание и обновление клиента")
     void successCreateClientTest() {
         //Создание клиента
