@@ -12,7 +12,7 @@ import static io.restassured.RestAssured.given;
 public class RickAndMortySteps {
     private final RequestSpecification rickSpecification = new RequestSpecBuilder().setBaseUri("https://rickandmortyapi.com/api").build();
 
-    @Step("Выполняем запрос на получение информации по ID персонажа")
+    @Step("Выполняем запрос на получение информации по ID персонажа {characterId}")
     public Response getAllInformation(int characterId) {
         Response response = given()
                 .spec(rickSpecification)
@@ -24,7 +24,7 @@ public class RickAndMortySteps {
         return response;
     }
 
-    @Step("Выполняем запрос на получение информации по ID эпизода")
+    @Step("Выполняем запрос на получение информации по ID эпизода {episodeID}")
     public String getLastCharacterEpisodes(int episodeId) {
         Response response = given()
                 .spec(rickSpecification)
