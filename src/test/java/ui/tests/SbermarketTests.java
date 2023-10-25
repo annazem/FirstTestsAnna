@@ -46,11 +46,11 @@ public class SbermarketTests {
     @TmsLink("231500")
     @Test(description = "Поиск и сравнение цен на яблоки")
     public void searchTest() {
-        String productNameExp = "Яблоко";
+        String productNameExp = "яблоко";
         sbermarketSteps.closeInfoMessage();
-        String productPriceMetro = sbermarketSteps.searchMetro(productNameExp);
+        String productPriceMetro = sbermarketSteps.searchItem("Метро", productNameExp);
         sbermarketSteps.leaveStore();
-        String productPriceAuchan = sbermarketSteps.searchAuchan(productNameExp);
+        String productPriceAuchan = sbermarketSteps.searchItem("Ашан", productNameExp);
         Assert.assertNotEquals(productPriceMetro, productPriceAuchan, "Цены одинаковые");
     }
 }
